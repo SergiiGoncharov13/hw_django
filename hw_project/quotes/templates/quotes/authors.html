@@ -1,0 +1,25 @@
+{% extends "quotes/base.html" %}
+{% block content %}
+{% load extract_tags %}
+
+<h1>Quote related with author: {{author_id}}</h1>
+<div class="row">
+    <p class="card-text"><b> Author's bio:</b> {{author.bio}}</p>
+    <p class="card-text"><b> Author's born date:</b> {{author.born_date}}</p>
+    <p class="card-text"><b> Author's born location:</b> {{author.born_location}}</p>
+    {% for quote in quotes %}
+    <div class="col-md-12 mb-12">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><b>Text:</b> {{quote.quote}}</p>
+                <p class="card-text"><b>Author:</b> {{ quote.author }} </p>
+
+                {% for tag in quote.tags|tag %}
+                <h6 class="btn btn-outline-secondary">{{tag}}</h6>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    {% endblock %}
